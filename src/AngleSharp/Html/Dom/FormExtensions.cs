@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace AngleSharp.Html.Dom
 {
     using AngleSharp.Common;
@@ -26,6 +28,7 @@ namespace AngleSharp.Html.Dom
         /// be thrown.
         /// </param>
         /// <returns>The given form for chaining.</returns>
+        [RequiresUnreferencedCode("Requires reflection to get a concrete type. Only if 'createMissing' is true.")]
         public static IHtmlFormElement SetValues(this IHtmlFormElement form, IDictionary<String, String> fields, Boolean createMissing = false)
         {
             if (form is null)
@@ -102,6 +105,8 @@ namespace AngleSharp.Html.Dom
         /// <param name="form">The form to submit.</param>
         /// <param name="fields">The fields to use as values.</param>
         /// <returns>The task eventually resulting in the response.</returns>
+        [UnconditionalSuppressMessage("ReflectionAnalysis", "IL2026",
+                                         Justification = "createMissing is set to false, will never call unreferenced code.")]
         public static Task<IDocument> SubmitAsync(this IHtmlFormElement form, Object fields) => form.SubmitAsync(fields.ToDictionary());
 
         /// <summary>
@@ -116,6 +121,7 @@ namespace AngleSharp.Html.Dom
         /// be thrown.
         /// </param>
         /// <returns>The task eventually resulting in the response.</returns>
+        [RequiresUnreferencedCode("Requires reflection to get a concrete type. Only if 'createMissing' is true.")]
         public static Task<IDocument> SubmitAsync(this IHtmlFormElement form, IDictionary<String, String> fields, Boolean createMissing = false)
         {
             form.SetValues(fields, createMissing);
@@ -129,6 +135,8 @@ namespace AngleSharp.Html.Dom
         /// <param name="element">The element to submit its form.</param>
         /// <param name="fields">The optional fields to use as values.</param>
         /// <returns>The task eventually resulting in the response.</returns>
+        [UnconditionalSuppressMessage("ReflectionAnalysis", "IL2026",
+                                         Justification = "createMissing is set to false, will never call unreferenced code.")]
         public static Task<IDocument> SubmitAsync(this IHtmlElement element, Object? fields = null) => element.SubmitAsync(fields.ToDictionary());
 
         /// <summary>
@@ -143,6 +151,7 @@ namespace AngleSharp.Html.Dom
         /// be thrown.
         /// </param>
         /// <returns>The task eventually resulting in the response.</returns>
+        [RequiresUnreferencedCode("Requires reflection to get a concrete type. Only if 'createMissing' is true.")]
         public static Task<IDocument> SubmitAsync(this IHtmlElement element, IDictionary<String, String> fields, Boolean createMissing = false)
         {
             if (element is HtmlFormControlElement button)

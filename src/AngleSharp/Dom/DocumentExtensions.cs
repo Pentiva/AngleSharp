@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+
 namespace AngleSharp.Dom
 {
     using AngleSharp.Browser;
@@ -21,6 +23,7 @@ namespace AngleSharp.Dom
         /// <typeparam name="TElement">The type of the element.</typeparam>
         /// <param name="document">The responsible document.</param>
         /// <returns>The created element.</returns>
+        [RequiresUnreferencedCode("Requires reflection to get a concrete type.")]
         public static TElement CreateElement<TElement>(this IDocument document)
             where TElement : IElement
         {
